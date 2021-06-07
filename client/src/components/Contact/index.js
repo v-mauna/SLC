@@ -19,7 +19,6 @@ function Contact(props) {
               <Calendar/>
             </Card.Body>
         </Card>
-
         </div>
         <div className="col-10 mx-auto p-5">
           <Card>
