@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Calendar from "react-calendar";
+import Calendly from "../Calendar";
 import './style.css'
 
 function Contact(props) {
@@ -16,7 +16,7 @@ function Contact(props) {
         <Card>
             <Card.Header className="text-center">Schedule your free estimate</Card.Header>
             <Card.Body className="text-center">
-              <Calendar/>
+              <Calendly/>
             </Card.Body>
         </Card>
         </div>
