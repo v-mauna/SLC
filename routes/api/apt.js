@@ -2,45 +2,43 @@ const router = require ("express").Router();
 const mongoose =require("mongoose");
 const path =require("path");
 const { brotliDecompress } = require("zlib");
-
-
 const db = require("../../models");
 
 
 // how do i structure this?
 
-router.post("/aptform", ({ body ,user}, res) => {
-  console.log(user)
-  body.userId= mongoose.Types.ObjectId(user._id) 
-  db.Event.create(body)
-      .then(dbAptform => {
-        res.json(dbAptform);
-      })
-      .catch(err => {
-        res.status(400).json(err);
-      });
-  });
+router.post("/aptform", async({ body ,user}, res,next) => {
+  try {
+    console.log(`user === ${user}`)
+    body.userId = mongoose.Types.ObjectId(user._id)
+    const aptForm = await db.Event.create(body)
+    res.json(aptForm)
 
-  router.put("/aptform", ({body}, res) => {
-    console.log(body)
-    Workout.findByIdAndUpdate(
+  } catch (error) {
+    console.log(`Error in apt.js router: ${error.message}`)
+    res.status(400).json(err);
+  }
+})
+
+  router.put("/aptform", async({body}, res,next) => {
+  try{
+    console.log(`body in aptForm request === ${body}`)
+    const updatedForm = await Workout.findByIdAndUpdate(
         req.params.id,
-    
     )
-        .then((aptform) => {
-            res.json(aptform)
-        })
-        .catch((e) => {
-            res.json(e)
-        })
-});
+    res.json(updatedForm)
+  }catch(error){
+    console.log(`error in aptForm router put request === ${error.message}`)
+    next(error)
+  }})
+
+
+
+
+
+
   
-
-
-
-
-  
-module.exports = router;const mongoose = require("mongoose");
+module.exports = router
 
 const Schema = mongoose.Schema;
 

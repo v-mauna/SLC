@@ -1,5 +1,5 @@
 const router= require("express").Router()
-const {User} = require("../../models")
+const { User } = require("../../models")
 var LocalStrategy = require('passport-local').Strategy;
 const passport= require("passport")
 
@@ -7,16 +7,16 @@ const passport= require("passport")
 passport.use(new LocalStrategy(
   function(username, password, done) {
 
-console.log('log in sucessfull')
+console.log('log in successful')
 
-    User.getUserByUsername(username, function(err, user){
-      if(err) throw err;
-      if(!user){
-        return done(null, false, {message: 'Unknown User'});
-      }
-      User.comparePassword(password, user.password, function(err, isMatch){
+User.getUserByUsername(username, function(err, user){
         if(err) throw err;
-     	if(isMatch){
+        if(!user){
+  return done(null, false, {message: 'Unknown User'});
+}
+User.comparePassword(password, user.password, function(err, isMatch){
+  if(err) throw err;
+  if(isMatch){
 
      	  return done(null, user);
      	} else {
@@ -80,4 +80,4 @@ req.logout();
 res.send(null)
 });
 
-module.exports=router
+module.exports = router

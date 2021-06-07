@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
-const serviceaddressSchema = new Schema({
+const serviceAddressSchema = new Schema({
   address: {
     type: String,
     trim: true,
@@ -23,8 +22,6 @@ const serviceaddressSchema = new Schema({
 
 });
 
-const Serviceaddress = mongoose.model("serviceaddress", serviceaddressSchema);
-
-module.exports = Serviceaddress;
 
 
+module.exports = mongoose.model('ServiceAddress', serviceAddressSchema);

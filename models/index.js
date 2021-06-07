@@ -1,5 +1,10 @@
+const mongoose = require("mongoose");
+const ServiceAddress = require('./ServiceAddress')
+const Event = require('./Event')
+const User = require('./User')
+
 module.exports= {
-    User: require("./User"),
-    Event: require("./event"),
-    Service: require("./serviceaddress")
+    User,
+    Event,
+    ServiceAddress
 }

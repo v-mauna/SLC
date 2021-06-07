@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
@@ -6,8 +7,7 @@ const passport = require("passport");
 const path = require("path");
 const mongoose = require('mongoose')
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sparxlawncare";
-// const mongoose = require("mongoose");
-// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sparxlawncare";
+
 
 app.use(express.urlencoded({ extented: true }));
 app.use(express.json());
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/evening-meadow-40236',
+  MONGODB_URI || 'mongodb://localhost/evening-meadow-40236',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -42,10 +42,13 @@ mongoose.connect(
     useFindAndModify: false
   }
 );
+require('./models/User')
+require('./models/Event')
+require('./models/ServiceAddress')
 
 app.use(require("./routes"));
 
-// this allowes you to activate the port
+// this allows you to activate the port
 require("./config/connection");
 app.listen(port, function () {
   console.log("app is listening on port", port);
